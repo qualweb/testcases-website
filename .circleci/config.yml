@@ -60,11 +60,12 @@ jobs:
         key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
       - run:
         name: Deploy Over SSH
-        command: scp -r $SSH_USER@$SSH_ACCESSIBLE:$SSH_ACCESSIBLE_PATH dist
+        command: scp -r `$SSH_USER@$SSH_ACCESSIBLE:$SSH_ACCESSIBLE_PATH` dist
 
 workflows:
+  version: 2.1
   # The build and deploy workflow
-  build-and-deploy:
+  build_deploy:
     jobs:
       - build
       # The deploy job will only run on the filtered branches and
