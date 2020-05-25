@@ -63,19 +63,18 @@ jobs:
         command: scp -r $SSH_USER@$SSH_ACCESSIBLE:$SSH_ACCESSIBLE_PATH dist
 
 workflows:
-  version: 2.1
-    # The build and deploy workflow
-    build-and-deploy:
-      jobs:
-        - build
-        # The deploy job will only run on the filtered branches and
-        # require the build job to be successful before it starts
-        - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - develop
-                - preprod
-                - master
+  # The build and deploy workflow
+  build-and-deploy:
+    jobs:
+      - build
+      # The deploy job will only run on the filtered branches and
+      # require the build job to be successful before it starts
+      - deploy:
+        requires:
+          - build
+        filters:
+          branches:
+            only:
+              - develop
+              - preprod
+              - master
