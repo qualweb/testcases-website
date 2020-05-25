@@ -26,13 +26,13 @@ jobs:
           paths:
             - node_modules
       # Test the source code
-      - run:
-          name: Testing source code
-          command: npm run test -- --no-watch --single-run --no-progress --browser=ChromeNoSandbox
+      #- run:
+      #    name: Testing source code
+      #    command: npm run test -- --no-watch --single-run --no-progress --browser=ChromeNoSandbox
       # Test e2e
-      - run:
-          name: Testing e2e 
-          command: npm run e2e -- --no-progress --config=e2e/protractor-ci.conf.js
+      #- run:
+      #    name: Testing e2e 
+      #    command: npm run e2e -- --no-progress --config=e2e/protractor-ci.conf.js
       # Build project with different configuration based on
       # the current branch
       - run:
