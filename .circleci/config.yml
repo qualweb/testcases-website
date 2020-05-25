@@ -9,35 +9,35 @@ jobs:
       - checkout
       # Log the current branch
       - run:
-        name: Show current branch
-        command: echo ${CIRCLE_BRANCH}
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
       # Restore local dependencies from cache
       - restore_cache:
-        keys:
-        - v1-dependencies-{{ checksum "package.json" }}
-        - v1-dependencies-
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
       # Install project dependencies
       - run:
-        name: Install local dependencies
-        command: npm install
+          name: Install local dependencies
+          command: npm install
       # Cache local dependencies if they don't exist
       - save_cache:
-        key: v1-dependencies-{{ checksum "package.json" }}
-        paths:
-          - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - node_modules
       # Test the source code
       - run:
-        name: Testing source code
-        command: npm run test -- --no-watch --single-run --no-progress --browser=ChromeNoSandbox
+          name: Testing source code
+          command: npm run test -- --no-watch --single-run --no-progress --browser=ChromeNoSandbox
       # Test e2e
       - run:
-        name: Testing e2e 
-        command: npm run e2e -- --no-progress --config=e2e/protractor-ci.conf.js
+          name: Testing e2e 
+          command: npm run e2e -- --no-progress --config=e2e/protractor-ci.conf.js
       # Build project with different configuration based on
       # the current branch
       - run:
-        name: Building
-        command: npm run build:prod
+          name: Building
+          command: npm run build:prod
       # Cache the dist folder for the deploy job
       - save_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
@@ -52,15 +52,15 @@ jobs:
     steps:
       # Log the current branch
       - run:
-        name: Show current branch
-        command: echo ${CIRCLE_BRANCH}
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
       # Restore cache from the build job which contains the
       # dist folder that needs to be deployed
       - restore_cache:
-        key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
       - run:
-        name: Deploy Over SSH
-        command: scp -r `$SSH_USER@$SSH_ACCESSIBLE:$SSH_ACCESSIBLE_PATH` dist
+          name: Deploy Over SSH
+          command: scp -r `$SSH_USER@$SSH_ACCESSIBLE:$SSH_ACCESSIBLE_PATH` dist
 
 workflows:
   version: 2.1
@@ -70,4 +70,12 @@ workflows:
       - build
       # The deploy job will only run on the filtered branches and
       # require the build job to be successful before it starts
-      - deploy
+      - deploy:
+        requires:
+          - build
+        filters:
+          branches:
+            only:
+              - develop
+              - preprod
+              - master
