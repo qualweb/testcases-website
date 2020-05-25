@@ -1,0 +1,72 @@
+{
+  "name": "QualWeb test cases",
+  "lastUpdated": "some date",
+  "htmlTechniques": {
+    "techniques": {
+      "QW-HTML-T1": {
+        "name": "Providing text alternatives for the area elements of image maps",
+        "code": "QW-HTML-T1",
+        "mapping": "H24",
+        "description": "This technique checks the text alternative of area elements of images maps",
+        "metadata": {
+          "target": {
+            "parent-sibling": "img",
+            "parent": "map",
+            "element": "area"
+          },
+          "success-criteria": [{
+              "name": "Non-text Content",
+              "code": "1.1.1",
+              "level": "A",
+              "principle": "Perceivable",
+              "url": "https://www.w3.org/WAI/WCAG21/Understanding/non-text-content"
+            },
+            {
+              "name": "Link Purpose (In Context)",
+              "code": "2.4.4",
+              "level": "A",
+              "principle": "Operable",
+              "url": "https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context"
+            },
+            {
+              "name": "Link Purpose (Link Only)",
+              "code": "2.4.9",
+              "level": "AAA",
+              "principle": "Operable",
+              "url": "https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-link-only"
+            }
+          ],
+          "related": ["G91", "H30"],
+          "url": "https://www.w3.org/WAI/WCAG21/Techniques/html/H24"
+        }
+      },
+      "QW-HTML-T2": {
+        
+      },
+      "QW-HTML-T3": {
+
+      },
+      "QW-HTML-T4": {
+
+      },
+      "QW-HTML-T5": {
+
+      },
+      "QW-HTML-T6": {
+
+      },
+      "QW-HTML-T7": {
+
+      },
+      "QW-HTML-T8": {
+
+      }
+    }
+  },
+  "cssTechniques": {
+
+  },
+  "bestPractices": {
+
+  }
+}

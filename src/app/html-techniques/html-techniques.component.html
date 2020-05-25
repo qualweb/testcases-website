@@ -1,0 +1,35 @@
+<section class="padding-top-xxl">
+  <div class="container">
+    <h1 class="display-title display-title-xxl">Implemented HTML techniques</h1>
+    <hr class="divider background-primary">
+    <p class="lead">
+      This section shows all HTML techniques implemented in QualWeb.
+    </p>
+  </div>
+</section>
+<section class="padding-vertical-xl">
+  <div class="container">
+    <h2>Table of contents</h2>
+    <ul>
+      <li>
+        Techniques 
+        <button class="button button-pill color-primary" (click)="showTableOfContents = !showTableOfContents">
+          {{ showTableOfContents ? "[hide]" : "[show]" }}
+        </button>
+        <ul *ngIf="showTableOfContents">
+          <li *ngFor="let t of techniques">
+            <a href="/html-techniques#{{ t }}">{{ t }}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+<section class="padding-vertical-xl">
+  <div class="container">
+    <h2>Techniques</h2>
+  </div>
+  <ng-container *ngFor="let t of techniques">
+    <app-technique-info [id]="t" [technique]="htmlTechniques['techniques'][t]"></app-technique-info>
+  </ng-container>
+</section>

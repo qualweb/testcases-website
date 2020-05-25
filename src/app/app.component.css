@@ -1,0 +1,16 @@
+#skip-main {
+  display: none;
+}
+
+#skip-main:focus {
+  display: block;
+}
+
+.content {
+  height: 100%;
+}
+
+main {
+  overflow: scroll;
+  overflow-x: hidden;
+}
