@@ -63,7 +63,9 @@ jobs:
             - "6f:86:cc:a5:a1:e8:b9:40:60:55:86:89:08:b4:59:9d"
       - run:
           name: Deploy Over SSH
-          command: scp -r ~/testCases/dist/* jvicente@accessible-serv.lasige.di.fc.ul.pt:/home/jvicente/public_html/circleci/
+          command: |
+            echo "194.117.20.243 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBNSR+DA0w9yO7KUiE189kh3hGzgxLpD7yUIp7yE19ubqi5auGzRJFSMMkspsXIsxyyBjkFrL+7oRa+enRlwo98=" >> ~/.ssh/known_hosts
+            scp -r ~/testCases/dist/* $SSH_USER@$SSH_ACCESSIBLE:$SSH_ACCESSIBLE_PATH
 
 workflows:
   # The build and deploy workflow
