@@ -60,7 +60,7 @@ jobs:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
       - add_ssh_keys:
           fingerprints:
-            - "de:6d:ab:0e:1f:77:1f:11:3b:e5:2a:ab:4b:d7:ec:f4"
+            - "6f:86:cc:a5:a1:e8:b9:40:60:55:86:89:08:b4:59:9d"
       - run:
           name: Deploy Over SSH
           command: scp -r dist $SSH_USER@$SSH_ACCESSIBLE:$SSH_ACCESSIBLE_PATH
