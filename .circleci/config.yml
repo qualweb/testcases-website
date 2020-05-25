@@ -58,9 +58,9 @@ jobs:
       # dist folder that needs to be deployed
       - restore_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-      - add_ssh_keys:
-          fingerprints:
-            - "6f:86:cc:a5:a1:e8:b9:40:60:55:86:89:08:b4:59:9d"
+      #- add_ssh_keys:
+      #    fingerprints:
+      #      - "6f:86:cc:a5:a1:e8:b9:40:60:55:86:89:08:b4:59:9d"
       - run:
           name: Deploy Over SSH
           command: scp -r dist $SSH_USER@$SSH_ACCESSIBLE:$SSH_ACCESSIBLE_PATH
