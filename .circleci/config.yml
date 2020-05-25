@@ -60,7 +60,7 @@ jobs:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: Deploy Over SSH
-          command: scp -r `$SSH_USER@$SSH_ACCESSIBLE:$SSH_ACCESSIBLE_PATH` dist
+          command: scp -r $SSH_USER@$SSH_ACCESSIBLE:$SSH_ACCESSIBLE_PATH dist
 
 workflows:
   version: 2.1
@@ -71,8 +71,7 @@ workflows:
       # The deploy job will only run on the filtered branches and
       # require the build job to be successful before it starts
       - deploy:
-        requires:
-          - build
+        requires: build
         filters:
           branches:
             only:
