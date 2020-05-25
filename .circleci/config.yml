@@ -63,7 +63,7 @@ jobs:
             - "6f:86:cc:a5:a1:e8:b9:40:60:55:86:89:08:b4:59:9d"
       - run:
           name: Deploy Over SSH
-          command: scp -r ~/testCases/dist/* jvicente@accessible-serv.lasige.di.fc.ul.pt:/home/jvicente/public_html/circleci/ -v
+          command: scp -r ~/testCases/dist/* jvicente@accessible-serv.lasige.di.fc.ul.pt:/home/jvicente/public_html/circleci/
 
 workflows:
   # The build and deploy workflow
