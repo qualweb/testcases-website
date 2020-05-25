@@ -45,25 +45,25 @@ jobs:
             - dist
   
   # The deploy job
-  #deploy:
-  #  working_directory: ~/testCases
-  #  docker:
-  #    - image: circleci/node:12-browsers
-  #  steps:
+  deploy:
+    working_directory: ~/testCases
+    docker:
+      - image: circleci/node:12-browsers
+    steps:
       # Log the current branch
-  #    - run:
-  #        name: Show current branch
-  #        command: echo ${CIRCLE_BRANCH}
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
       # Restore cache from the build job which contains the
       # dist folder that needs to be deployed
-  #    - restore_cache:
-  #        key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-  #    - add_ssh_keys:
-  #        fingerprints:
-  #          - "6f:86:cc:a5:a1:e8:b9:40:60:55:86:89:08:b4:59:9d"
-  #    - run:
-  #        name: Deploy Over SSH
-  #        command: scp -r dist $SSH_USER@$SSH_ACCESSIBLE:$SSH_ACCESSIBLE_PATH
+      - restore_cache:
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+      - add_ssh_keys:
+          fingerprints:
+            - "6f:86:cc:a5:a1:e8:b9:40:60:55:86:89:08:b4:59:9d"
+      - run:
+          name: Deploy Over SSH
+          command: scp -r dist $SSH_USER@$SSH_ACCESSIBLE:$SSH_ACCESSIBLE_PATH
 
 workflows:
   # The build and deploy workflow
@@ -72,10 +72,10 @@ workflows:
       - build
       # The deploy job will only run on the filtered branches and
       # require the build job to be successful before it starts
-      #- deploy:
-      #    requires:
-      #      - build
-      #    filters:
-      #      branches:
-      #        only:
-      #          - master
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
